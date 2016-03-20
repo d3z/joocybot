@@ -14,7 +14,7 @@ format_response = (labels, fullList) ->
 label = (message, fullList) ->
     image_url = encodeURIComponent(message.match[1])
     label_url = "#{PEEWEE_URL}/#{image_url}"
-    robot.http(label_url)
+    mesage.http(label_url)
      .header('Accept', 'application/json')
      .get() (err, res, body) ->
          if err
