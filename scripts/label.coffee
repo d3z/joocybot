@@ -2,7 +2,7 @@ PEEWEE_URL = 'http://vision.joocy.com/label'
 
 format_response = (labels, fullList) ->
     if fullList
-        return labels
+        return labels.join()
     else
         firstIdx = Math.floor(Math.random() * labels.length)
         first = labels[firstIdx]
