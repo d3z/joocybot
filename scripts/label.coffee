@@ -11,7 +11,7 @@ format_response = (labels, fullList) ->
         second = labels[secondIdx]
         return "I see a #{first}, or maybe a #{second}"
 
-label = (image, fullList) ->
+label = (message, fullList) ->
     image_url = encodeURIComponent(message.match[1])
     label_url = "#{PEEWEE_URL}/#{image_url}"
     robot.http(label_url)
@@ -28,7 +28,7 @@ label = (image, fullList) ->
 module.exports = (robot) ->
 
     robot.respond /look (.*)/i, (message) ->
-        message.send label(message.match[1], false)
+        label(message, false)
 
     robot.respond /label (.*)/i, (message) ->
-        message.send label(message.match[1], true)
+        label(message, true)
