@@ -2,7 +2,12 @@ PEEWEE_URL = 'http://vision.joocy.com/label'
 
 module.exports = (robot) ->
 
-    robot.hear /look (.*)/i, (res) ->
-        image_url = encodeURIComponent(res.match[1])
+    robot.respond /look (.*)/i, (message) ->
+        image_url = encodeURIComponent(message.match[1])
         label_url = "#{PEEWEE_URL}/#{image_url}"
         robot.logger.info "I'll ask about #{label_url}"
+        robot.http(label_url).get()(err, res, body) ->
+            robot.logger.info "I got a response"
+            response = JSON.parse(body)
+            labels = response.labels
+            res.send labels.join()
