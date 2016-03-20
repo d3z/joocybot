@@ -10,9 +10,9 @@ module.exports = (robot) ->
          .header('Accept', 'application/json')
          .get() (err, res, body) ->
              if err
-                 robot.send '/me shrug'
+                 message.emote 'shrug'
                  return
              robot.logger.info "I got a response"
              response = JSON.parse body
              labels = response.labels
-             robot.send labels.join()
+             message.send labels.join()
