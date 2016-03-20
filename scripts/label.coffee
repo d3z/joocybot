@@ -23,4 +23,4 @@ module.exports = (robot) ->
              robot.logger.info "I got a response"
              response = JSON.parse body
              labels = response.labels
-             message.send format_reponse(labels)
+             message.send format_response(labels)
