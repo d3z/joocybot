@@ -1,5 +1,13 @@
 PEEWEE_URL = 'http://vision.joocy.com/label'
 
+format_response = (labels) ->
+    firstIdx = Math.floor(Math.random() * labels.length)
+    first = labels[firstIdx]
+    labels.splice(firstIdx, 1)
+    secondIdx = Math.floor(Math.random() * labels.length)
+    second = labels[secondIdx]
+    return "I see a #{first}, or maybe a #{second}"
+
 module.exports = (robot) ->
 
     robot.respond /look (.*)/i, (message) ->
@@ -15,4 +23,4 @@ module.exports = (robot) ->
              robot.logger.info "I got a response"
              response = JSON.parse body
              labels = response.labels
-             message.send labels.join()
+             message.send format_reponse(labels)
